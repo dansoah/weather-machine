@@ -1,1 +1,1 @@
-import HelloWorldContainer from './weather/hello-world-container.jsx';
+import Weather from './weather/index.jsx';
