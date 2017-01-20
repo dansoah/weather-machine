@@ -47,4 +47,4 @@ jspm_packages
 .yarn-integrity
 
 server.js
-app-dist/**
+app-dist
