@@ -13,22 +13,15 @@ class Weather extends React.Component {
 
     constructor(props) {
         super(props);
-        
+        this.state = {userPosition: {lat: 2, long:3}}
     }
 
-    componentWillMount() {
-        this.setState( {userPosition: {lat: 0, long:0}} );
-    }
 
     componentDidMount() {        
 
         this.getUserLatLong()
             .then((data) => {                
                 this.setState( {userPosition: data} );
-                return getCurrentWeatherByLatLong(data.lat,data.long);
-            })
-            .then( (data) => {
-                console.log(data);
             })
     }
 
@@ -86,8 +79,15 @@ class Weather extends React.Component {
     }
 
     render() {
-        return (<div><CurrentCity latitude={this.state.userPosition.lat}
-                                  longitude={this.state.userPosition.long} /></div>);
+        return (<div>
+                    <div id="header">
+                        <CurrentCity latitude={this.state.userPosition.lat}
+                                    longitude={this.state.userPosition.long} />
+                    </div>
+                    <div id="current-city-forecast">
+                    </div>
+                </div>
+                );
     }
 
 }
