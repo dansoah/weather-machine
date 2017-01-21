@@ -1,7 +1,6 @@
 import test from 'ava';
 import Geolocation from './geolocation';
 
-
 test('latitudeIsValid | Latitude must be a number', t => {
     let g = new Geolocation();
     t.false(
@@ -105,5 +104,27 @@ test('longitudeIsValid | longitude must be a number between -90 and 90', t => {
     t.true(
         g.longitudeIsValid(5.001924),
         "Not allowing positive decimal");
+
+});
+
+test('getLatLongByIp | IP Must be valid', t => {
+    //Greenwich is 0, -1 ~ -180 is eastern and 1 ~ 180 is western
+    let g = new Geolocation();
+
+    t.notThrows(
+        g.getLatLongByIp("192.168.10.15"),
+        "Not valid IP")
+    t.throws(
+        g.getLatLongByIp("192.181.10"),
+        Error,
+        "Allowing 3 octects");
+    t.throws(
+        g.getLatLongByIp("192.181"),
+        Error,
+        "Allowing 2 octects");
+    t.throws(
+        g.getLatLongByIp("0.0.0.0"),
+        Error,
+        "Allowing 0.0.0.0");
 
 });
