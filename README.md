@@ -8,7 +8,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing & Running
 
-You will need to install [Node.js](https://nodejs.org/). I've developed this using node v7.4.0, so it's the recommended version.
+Get a [Google geocoding Api key](https://developers.google.com/maps/documentation/geocoding/intro) and
+a [Open Weather Map key](http://openweathermap.org/appid). Store them in the config file located on server/config.js.
+
+Install [Node.js](https://nodejs.org/). This application was developed using v7.4.0.
 
 1. Installing dependencies:
     ```shell
@@ -49,7 +52,10 @@ $ npm run test
 * [Babel](https://babeljs.io/) - Used to generate browser compatible javascript
 * [Node.js](https://nodejs.org/) - The applciation platform
 * [Koa](https://github.com/koajs/koa) - HTTP framework
-* [Ava](https://github.com/avajs/ava) - Used to test
+* [Ava](https://github.com/avajs/ava) - Testing framework
+* [geoplugin](http://www.geoplugin.net/) - Informs approximated latlong using user's ip
+* [OpenWeatherMap](http://openweathermap.org) - Weather API
+* [Google geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) - Get user location data using latlong info
 
 ## License
 
