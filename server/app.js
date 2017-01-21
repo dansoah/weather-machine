@@ -42,10 +42,19 @@ router.get('/', async (ctx, next) => {
 });
 
 router.get('/user-latlong', async (ctx, next) => {
-    ctx.body = {
-        "lat": "-23.4733",
-        "long": "-46.6658",
-    }
+
+    var ip = ctx.request.ip;
+    let ipv4 = ip.split(":").reverse()[0];
+
+    let g = new Geolocation();
+    await g.getLatLongByIp(ipv4).then( (data) => {
+        console.log(data);
+        ctx.body = {
+            "lat": data.latitude,
+            "long": data.longitude,
+        }
+    })    
+    
 });
 
 router.get('/city-info', async (ctx, next) => {
@@ -58,8 +67,6 @@ router.get('/city-info', async (ctx, next) => {
     }).catch( (e) => console.log("deu erro",e))
 
 });
-
-
 
 app.listen(5050, () => console.log('Listening on port 5050.'));
 
