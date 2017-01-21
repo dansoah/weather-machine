@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing & Running
 
 Get a [Google geocoding Api key](https://developers.google.com/maps/documentation/geocoding/intro) and
-a [Open Weather Map key](http://openweathermap.org/appid). Store them in the config file located on server/config.js.
+a [Open Weather Map key](http://openweathermap.org/appid). Store them in the config file located on [server/config.js](server/config.js).
 
 Install [Node.js](https://nodejs.org/). This application was developed using v7.4.0.
 
