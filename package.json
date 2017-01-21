@@ -47,7 +47,9 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-3": "^6.22.0",
     "less": "^2.7.2",
+    "moxios": "^0.3.0",
     "nodemon": "^1.11.0",
+    "sinon": "^1.17.7",
     "webpack": "^1.14.0"
   },
   "ava": {
