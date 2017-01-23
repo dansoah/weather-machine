@@ -13,7 +13,7 @@ import axios from 'axios';
 import Geolocation from './geolocation';
 import Weather from './weather';
 import exceptionGrabber from './exception-grabber';
-import {kelvinToCelsius,kelvinToFahrenheit} from './convert';
+import { kelvinToCelsius, kelvinToFahrenheit } from './convert';
 
 const root = process.env.NODE_ENV === 'production'
     ? __dirname
@@ -49,23 +49,23 @@ router.get('/user-latlong', async (ctx, next) => {
     let ipv4 = ip.split(":").reverse()[0];
 
     let g = new Geolocation();
-    await g.getLatLongByIp(ipv4).then( (data) => {
+    await g.getLatLongByIp(ipv4).then((data) => {
         ctx.body = {
             "lat": data.latitude,
             "long": data.longitude,
         }
-    })    
-    
+    })
+
 });
 
 router.get('/city-info', async (ctx, next) => {
     let lat = ctx.query.latitude;
     let long = ctx.query.longitude;
-    
+
     let g = new Geolocation();
-    await g.getCityInfoByLatLong(lat,long).then( (data) => {
-        ctx.body = {name: data};
-    }).catch( (e) => console.log("deu erro",e))
+    await g.getCityInfoByLatLong(lat, long).then((data) => {
+        ctx.body = { name: data };
+    }).catch((e) => console.log("deu erro", e))
 
 });
 
@@ -75,8 +75,8 @@ router.get('/weather', async (ctx, next) => {
 
     const w = new Weather();
 
-    await w.getCurrentWeather(lat,long).then( (weather) => {
-        
+    await w.getCurrentWeather(lat, long).then((weather) => {
+
         ctx.body = {
             temperature_c: kelvinToCelsius(weather.main.temp),
             temperature_f: kelvinToFahrenheit(weather.main.temp),
@@ -101,8 +101,44 @@ router.get('/weather', async (ctx, next) => {
             sunrise_utc: 0,
             sunset_utc: 0,
         }
-    }).catch( (e) => console.log("deu erro",e))
-    
+    }).catch((e) => console.log("deu erro", e))
+
+
+});
+
+router.get('/forecast', async (ctx, next) => {
+    let lat = ctx.query.latitude;
+    let long = ctx.query.longitude;
+
+    const w = new Weather();
+
+    await w.getForecast(lat, long).then((forecast) => {
+        
+        ctx.body = forecast.list.map((f) => {
+            f = f.main;
+            return {
+                date: f.dt,
+                temperature_c: kelvinToCelsius(f.temp),
+                min_c: kelvinToCelsius(f.temp_min),
+                max_c: kelvinToCelsius(f.temp_max),
+                min_f: kelvinToFahrenheit(f.temp_min),
+                max_f: kelvinToFahrenheit(f.temp_max),
+                humidity: f.humidity
+            }
+        });
+
+    }, () => {
+        ctx.body = {
+            date: 0,
+            temperature_c: 0,
+            min_c: 0,
+            max_c: 0,
+            min_f: 0,
+            max_f: 0,
+            humidity: 0
+        }
+    }).catch((e) => console.log("deu erro", e))
+
 
 });
 
