@@ -8,7 +8,7 @@ export default class Weather{
 
     }
 
-    getCurrentWeather(latitude, logitude){    
+    getCurrentWeather(latitude, logitude){  
         const url = 'http://api.openweathermap.org/data/2.5/weather?'
                         +'lat='+latitude
                         +'&lon='+logitude
@@ -25,12 +25,13 @@ export default class Weather{
         
         return new Promise( (resolve, reject)=> {
             axios.get(url).then( (response) => {
-                return resolve(response.data);
+                if(response.status === 200)
+                    return resolve(response.data);
+                return reject();
             }, (err) => {
                 return reject(err);
             })
-        })
-        
+        })        
 
     }
 
