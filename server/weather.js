@@ -25,10 +25,8 @@ export default class Weather{
         
         return new Promise( (resolve, reject)=> {
             axios.get(url).then( (response) => {
-                console.log("A",response);
                 return resolve(response.data);
             }, (err) => {
-                console.log("B",err);
                 return reject(err);
             })
         })
