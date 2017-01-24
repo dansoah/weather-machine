@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import CurrentCity from './current-city/index.jsx';
+import CurrentWeather from './current-weather/index.jsx';
 
 var geoOptions = {
     enableHighAccuracy: true,
@@ -13,16 +13,37 @@ class Weather extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {userPosition: {lat: 2, long:3}}
+        this.state = {
+            userPosition: { lat: 2, long: 3 },
+            background: {
+                attributions: null,
+                place: null,
+                url: null
+            }
+        }
     }
 
-
-    componentDidMount() {        
+    componentDidMount() {
 
         this.getUserLatLong()
-            .then((data) => {                
-                this.setState( {userPosition: data} );
+            .then((data) => {
+                this.setState({ userPosition: data });
+                return this.getBackgroundByLatLong(data.lat, data.long)
             })
+            .then((data) => {
+                this.setState({ background: data });
+                console.log("back", data)
+            })
+    }
+
+    getBackgroundByLatLong(latitude, longitude) {
+        return new Promise((resolve, reject) => {
+            let url = '/city-background/?latitude=' + latitude
+                + '&longitude=' + longitude;
+            axios.get(url).then((response) => {
+                resolve(response.data);
+            });
+        });
     }
 
     getLatLongByGeolocation() {
@@ -34,11 +55,11 @@ class Weather extends React.Component {
              *  
              * Works fine at chrome, firefox need some bugfixing, not
              * tested with IE/Edge
-            */ 
+            */
             let locationTimeout = setTimeout(() => {
                 this.getLatLongByIp().then(resolve, reject);
             }, 4000);
-            
+
             return navigator
                 .geolocation
                 .getCurrentPosition((data) => {
@@ -79,15 +100,18 @@ class Weather extends React.Component {
     }
 
     render() {
-        return (<div>
-                    <div id="header">
-                        <CurrentCity latitude={this.state.userPosition.lat}
-                                    longitude={this.state.userPosition.long} />
-                    </div>
-                    <div id="current-city-forecast">
-                    </div>
-                </div>
-                );
+        var backgroundStyle = {
+            backgroundImage: 'url(' + this.state.background.url + ')'
+        }
+        return (<div id="container" style={backgroundStyle}>
+            <div id="header">
+                <CurrentWeather latitude={this.state.userPosition.lat}
+                    longitude={this.state.userPosition.long} />
+            </div>
+            <div id="current-city-forecast">
+            </div>
+        </div>
+        );
     }
 
 }
