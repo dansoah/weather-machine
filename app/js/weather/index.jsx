@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
 import CurrentWeather from './current-weather/index.jsx';
+import Forecast from './forecast/index.jsx';
 
 var geoOptions = {
     enableHighAccuracy: true,
     maximumAge: 30000,
-    timeout: 27000
+    timeout: 4000
 };
 
 class Weather extends React.Component {
@@ -19,7 +21,8 @@ class Weather extends React.Component {
                 attributions: null,
                 place: null,
                 url: null
-            }
+            },
+            isCelsius: true
         }
     }
 
@@ -104,12 +107,15 @@ class Weather extends React.Component {
             backgroundImage: 'url(' + this.state.background.url + ')'
         }
         return (<div id="container" style={backgroundStyle}>
-            <div id="header">
+            <div id="header" className="center">
                 <CurrentWeather latitude={this.state.userPosition.lat}
-                    longitude={this.state.userPosition.long} />
+                                longitude={this.state.userPosition.long}
+                                isCelsius={this.state.isCelsius} />
             </div>
-            <div id="current-city-forecast">
-            </div>
+
+             <Forecast latitude={this.state.userPosition.lat}
+                      longitude={this.state.userPosition.long}
+                      isCelsius={this.state.isCelsius} />
         </div>
         );
     }
