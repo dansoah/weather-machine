@@ -8,10 +8,8 @@ export default class ForecastItem extends React.Component {
 
     render() {
         return <div className="forecast-item">
-            <div className="item-temp">
-                <Temperature temperatureC={this.props.temperatureC}
-                    temperatureF={this.props.temperatureF}
-                    isCelsius={this.props.isCelsius} />
+            <div className="item-date">
+                {this.props.date}
             </div>
             <div className="item-min-max">
                 <MinAndMax minC={this.props.minC}
