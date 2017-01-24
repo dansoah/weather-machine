@@ -120,6 +120,7 @@ router.get('/forecast', async (ctx, next) => {
             return {
                 date: f.dt,
                 temperature_c: kelvinToCelsius(f.temp),
+                temperature_f: kelvinToFahrenheit(f.temp),
                 min_c: kelvinToCelsius(f.temp_min),
                 max_c: kelvinToCelsius(f.temp_max),
                 min_f: kelvinToFahrenheit(f.temp_min),
