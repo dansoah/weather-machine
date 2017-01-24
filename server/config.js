@@ -5,3 +5,7 @@ export const openWeatherMap = {
 export const googleGeoCode = {
     key: "YOUR GOOGLE GEOCODE KEY HERE"
 }
+
+export const googlePlaces = {
+    key: "YOUR GOOGLE PLACES KEY HERE"
+}
