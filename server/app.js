@@ -116,15 +116,15 @@ router.get('/forecast', async (ctx, next) => {
     await w.getForecast(lat, long).then((forecast) => {
 
         ctx.body = forecast.list.map((f) => {
-            f = f.main;
+            let m = f.main;
             return {
                 date: f.dt,
-                temperature_c: kelvinToCelsius(f.temp),
-                temperature_f: kelvinToFahrenheit(f.temp),
-                min_c: kelvinToCelsius(f.temp_min),
-                max_c: kelvinToCelsius(f.temp_max),
-                min_f: kelvinToFahrenheit(f.temp_min),
-                max_f: kelvinToFahrenheit(f.temp_max),
+                temperature_c: kelvinToCelsius(m.temp),
+                temperature_f: kelvinToFahrenheit(m.temp),
+                min_c: kelvinToCelsius(m.temp_min),
+                max_c: kelvinToCelsius(m.temp_max),
+                min_f: kelvinToFahrenheit(m.temp_min),
+                max_f: kelvinToFahrenheit(m.temp_max),
                 humidity: f.humidity
             }
         });
