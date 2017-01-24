@@ -11,6 +11,7 @@ import path from 'path';
 import axios from 'axios';
 
 import Geolocation from './geolocation';
+import Places from './places';
 import Weather from './weather';
 import exceptionGrabber from './exception-grabber';
 import { kelvinToCelsius, kelvinToFahrenheit } from './convert';
@@ -113,7 +114,7 @@ router.get('/forecast', async (ctx, next) => {
     const w = new Weather();
 
     await w.getForecast(lat, long).then((forecast) => {
-        
+
         ctx.body = forecast.list.map((f) => {
             f = f.main;
             return {
@@ -140,6 +141,44 @@ router.get('/forecast', async (ctx, next) => {
     }).catch((e) => console.log("deu erro", e))
 
 
+});
+
+router.get('/city-background', async (ctx, next) => {
+    let latitude = ctx.query.latitude;
+    let longitude = ctx.query.longitude;
+
+    const p = new Places();
+    let types = ["museum", "park", "church", "city_hall"]
+
+    var response = {
+        attributions: null,
+        place: null,
+        url: null
+    };
+
+    await p.getPlacesNearby(latitude, longitude, 1000, types).then((data) => {
+        let pictures = p.getPicturesFromPlaces(data.results);
+        let pictureCount = pictures.length;
+
+        var selectedPicture;
+        if (pictureCount == 1) {
+             selectedPicture = pictures[0];
+        } else {
+            let random = Math.floor(Math.random() * pictureCount);
+            selectedPicture = pictures[random];
+        }
+        
+        let pictureReference = selectedPicture.photo_reference;
+        response.attributions = selectedPicture.attributions;
+        response.place = selectedPicture.place_name;
+
+        return p.getPlacePicture(pictureReference, 1600);
+    }).then( (pictureUrl) => {
+        response.url = pictureUrl;
+        ctx.body = response;
+    }).catch( (e) => {
+        console.log("Deu erro",e);
+    })
 });
 
 app.listen(5050, () => console.log('Listening on port 5050.'));
