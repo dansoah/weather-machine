@@ -5,8 +5,8 @@ export default class Temperature extends React.Component {
 
     render() {
         return this.props.isCelsius 
-                    ? <span> {this.props.temperatureC} ºC </span>
-                    : <span> {this.props.temperatureF} ºF </span>
+                    ? <span className="temp"> {this.props.temperatureC} ºC </span>
+                    : <span className="temp"> {this.props.temperatureF} ºF </span>
     }
 
 }
