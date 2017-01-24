@@ -149,7 +149,11 @@ router.get('/city-background', async (ctx, next) => {
     let longitude = ctx.query.longitude;
 
     const p = new Places();
-    let types = ["museum", "park", "church", "city_hall"]
+    let types = ["museum", "park", "church", "city_hall","amusement_park",
+                "airport","hospital","aquarium","library","bank","bakery",
+                "bus_station", "cemetery", "courthouse", "embassy", "school",
+                "fire_station", "shopping_mall", "stadium", "subway_station",
+                "university", "hindu_temple", "zoo"]
 
     var response = {
         attributions: null,
