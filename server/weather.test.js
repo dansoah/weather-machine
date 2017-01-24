@@ -1,7 +1,6 @@
 import test from 'ava';
 import moxios from 'moxios';
 import sinon from 'sinon';
-import Q from 'q';
 
 import Weather from './weather';
 
