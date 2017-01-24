@@ -119,7 +119,7 @@ export default class CurrentWeather extends React.Component {
                 isCelsius={this.props.isCelsius} />
             </div>
             <div id="city-name">{this.state.cityData.name}</div>
-            
+            <div className="clear"> </div>
         </div>
     }
 }
