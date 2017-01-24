@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import Temperature from './temperature.jsx';
+import Temperature from '../temperature.jsx';
+import MinAndMax from '../min-and-max.jsx';
 
 export default class CurrentWeather extends React.Component {
     constructor(props) {
@@ -45,12 +46,11 @@ export default class CurrentWeather extends React.Component {
                 cityWeather: {
                     minC: parseInt(weatherInfo.min_c),
                     minF: parseInt(weatherInfo.min_f),
-                    maxC: parseInt(weatherInfo.min_c),
-                    maxF: parseInt(weatherInfo.min_f),
+                    maxC: parseInt(weatherInfo.max_c),
+                    maxF: parseInt(weatherInfo.max_f),
                     humidity: parseInt(weatherInfo.humidity)
                 },
                 forecastInfo: forecastInfo,
-                isCelsius: true
             })
         })
 
@@ -105,18 +105,22 @@ export default class CurrentWeather extends React.Component {
 
 
     render() {
-        console.log(this.state.cityData)
         return <div id="city-info">
-                    <div id="city-name">{this.state.cityData.name}</div>
-                    <Temperature elmId="main-temp"
-                        temperatureC={this.state.cityData.temperatureC}
+            <div className="row">                
+                <div id="main-temp">
+                    <Temperature temperatureC={this.state.cityData.temperatureC}
                         temperatureF={this.state.cityData.temperatureF}
-                        isCelsius={this.state.isCelsius} />
-                    <MinAndMax minC={this.state.minC}
-                        minF={this.state.minF}
-                        maxC={this.state.maxC}
-                        maxF={this.state.maxF} />
+                        isCelsius={this.props.isCelsius} />
                 </div>
+                <MinAndMax minC={this.state.cityWeather.minC}
+                minF={this.state.cityWeather.minF}
+                maxC={this.state.cityWeather.maxC}
+                maxF={this.state.cityWeather.maxF}
+                isCelsius={this.props.isCelsius} />
+            </div>
+            <div id="city-name">{this.state.cityData.name}</div>
+            
+        </div>
     }
 }
 
