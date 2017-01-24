@@ -103,19 +103,37 @@ class Weather extends React.Component {
     }
 
     render() {
-        var backgroundStyle = {
+        let backgroundStyle = {
             backgroundImage: 'url(' + this.state.background.url + ')'
         }
+
+        var attributions = null;
+        if (this.state.background.attributions != null)
+            attributions = this.state.background.attributions.map((a) => {
+                let link = a.match(/href="(.*?)"/)[1];
+                let name = a.match(/>(.*?)</)[1];
+
+                return (<a href={link} target="_blank">{name}</a>);
+            })
+
         return (<div id="container" style={backgroundStyle}>
             <div id="header" className="center">
                 <CurrentWeather latitude={this.state.userPosition.lat}
-                                longitude={this.state.userPosition.long}
-                                isCelsius={this.state.isCelsius} />
+                    longitude={this.state.userPosition.long}
+                    isCelsius={this.state.isCelsius} />
+
             </div>
 
-             <Forecast latitude={this.state.userPosition.lat}
-                      longitude={this.state.userPosition.long}
-                      isCelsius={this.state.isCelsius} />
+            <Forecast latitude={this.state.userPosition.lat}
+                longitude={this.state.userPosition.long}
+                isCelsius={this.state.isCelsius} />
+            <div id="bg-info">
+                <img src="/images/powered_by_google_on_white.png" />
+                <p> {this.state.background.place} by {attributions}
+
+                </p>
+
+            </div>
         </div>
         );
     }
