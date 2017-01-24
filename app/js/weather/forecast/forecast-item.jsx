@@ -7,7 +7,7 @@ import MinAndMax from '../min-and-max.jsx'
 export default class ForecastItem extends React.Component {
 
     render() {
-        return <div className="forecast-item">
+        return <div className="forecast-item" key={this.props.date}>
             <div className="item-date">
                 {this.props.date}
             </div>

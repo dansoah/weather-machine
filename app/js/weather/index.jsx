@@ -113,7 +113,7 @@ class Weather extends React.Component {
                 let link = a.match(/href="(.*?)"/)[1];
                 let name = a.match(/>(.*?)</)[1];
 
-                return (<a href={link} target="_blank">{name}</a>);
+                return (<a href={link} key={link} target="_blank">{name}</a>);
             })
 
         return (<div id="container" style={backgroundStyle}>
