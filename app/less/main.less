@@ -6,6 +6,10 @@ body {
         min-height: 100%;
 }
 
+.clear{
+    clear:both;
+}
+
 div#app,
 div#container{
     height:100%;
@@ -50,46 +54,102 @@ div#container{
             }
 
             div.min-max{
-                font-weight:bolder;
                 float:left;
                 margin-left:20px;
                 margin-top:43px;
                 vertical-align:bottom;
-                .day-max{
-                    .title{
-                        color: #e8274d;
-                        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
-                        font-size:20px;
-                    }
-
-                    .temp{
-                        color: #FFF;
-                        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
-                        font-size:20px;
-                    }
-                }
-
-                .day-min{
-                    .title{
-                        color: #278ee8;
-                        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
-                        font-size:20px;
-                    }
-
-                    .temp{
-                        color: #FFF;
-                        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
-                        font-size:20px;
-                    }
-                }
+                font-size:20px;
             }
+        }
+    }
+
+    div.min-max{
+        font-weight:bolder;        
+        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);       
+
+        .temp{
+                color: #FFF;
+        }
+
+        .day-max{
+            .title{
+                color: #e8274d;
+            }
+        }
+
+        .day-min{
+            .title{
+                color: #278ee8;
+            }                    
         }
     }
 
     div#forecast{
         float:left;
         clear:both;
-        background-color: rgba(200,200,200,.2);
         padding:10px;
+        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
+        color:#FFF;
+        font-weight:bolder;
+        width:795px;
+        .forecast-item{
+            float:left;
+            margin-left:10px;
+            padding-left:10px;
+            
+            .item-date{
+                font-size:22px;
+            }
+
+            .item-min-max{
+                padding-top:5px;
+            }
+            .day-max,
+            .day-min{
+                .title{
+                    font-size:17px;
+                }
+            }
+        }
+
+        .forecast-item:not(:first-of-type){
+            border-left:2px solid rgba(255,255,255,1);
+        }
+    }
+
+    div#bg-info{
+        color:#FFF;
+        text-shadow: 1px 1px 1px rgba(50, 50, 50, 1);
+        font-size:15px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-align: right;
+
+        a, a:visited, a:active{
+            color:#CCC;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color:#FFF;
+        }
+
+        p{
+            float:right;
+            padding-bottom:10px;
+            a{
+                text-transform: capitalize;
+            }    
+        }
+
+        img{
+            float:right;
+            padding-left:15px;
+            padding-right:10px;
+            padding-top:15px;
+        }
+        
     }
 }
