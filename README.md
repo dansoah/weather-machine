@@ -1,6 +1,8 @@
 # Weather Machine
 
-A weather application created using React and KOA.
+A weather application created using React, KOA, Open Weather Map as weather API and Google Places API for displaying the background images.
+
+![Weather Machine Screenshot](https://github.com/dansoah/weather-machine/raw/master/media/screenshot.png?raw=true)
 
 ## Getting Started
 
