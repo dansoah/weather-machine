@@ -50,14 +50,16 @@ $ npm run test
 
 ## Built With
 
-* [React](https://facebook.github.io/react/) - Used to create user interface
-* [Babel](https://babeljs.io/) - Used to generate browser compatible javascript
+* [Gulp](http://gulpjs.com/) - To manage all building tasks
+* [React](https://facebook.github.io/react/) - To create user interface
+* [Babel](https://babeljs.io/) - To generate browser compatible javascript
 * [Node.js](https://nodejs.org/) - The applciation platform
 * [Koa](https://github.com/koajs/koa) - HTTP framework
-* [Ava](https://github.com/avajs/ava) - Testing framework
-* [geoplugin](http://www.geoplugin.net/) - Informs approximated latlong using user's ip
-* [OpenWeatherMap](http://openweathermap.org) - Weather API
-* [Google geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) - Get user location data using latlong info
+* [Ava](https://github.com/avajs/ava) - As our testing framework
+* [geoplugin](http://www.geoplugin.net/) - To inform approximated latlong using user's ip
+* [OpenWeatherMap](http://openweathermap.org) - As our weather API
+* [Google geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) - To get user location data using latlong info
+* [Google places API](https://developers.google.com/places/) - To get pictures from users's nearby and use them as background images
 
 ## Known issues
 
