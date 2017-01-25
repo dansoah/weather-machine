@@ -13,7 +13,6 @@ import axios from 'axios';
 import Geolocation from './geolocation';
 import Places from './places';
 import Weather from './weather';
-import exceptionGrabber from './exception-grabber';
 import { kelvinToCelsius, kelvinToFahrenheit } from './convert';
 import { server as config } from './config'
 
