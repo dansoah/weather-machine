@@ -23,7 +23,7 @@ Install [Node.js](https://nodejs.org/). This application was developed using v7.
 2. Building:
 
     ```
-    > $ npm run build:all
+    $ npm run build:all
     ```
     
 3. Running
