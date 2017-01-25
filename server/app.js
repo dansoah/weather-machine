@@ -15,6 +15,7 @@ import Places from './places';
 import Weather from './weather';
 import exceptionGrabber from './exception-grabber';
 import { kelvinToCelsius, kelvinToFahrenheit } from './convert';
+import { server as config } from './config'
 
 const root = process.env.NODE_ENV === 'production'
     ? __dirname
@@ -23,8 +24,7 @@ const static_files = path.join(root, 'app-dist');
 
 const app = new Koa();
 const router = Router();
-app.use(exceptionGrabber)
-    .use(BodyParser())
+app.use(BodyParser())
     .use(serve(static_files))
     .use(views(root, {
         map: {
@@ -186,6 +186,6 @@ router.get('/city-background', async (ctx, next) => {
     })
 });
 
-app.listen(5050, () => console.log('Listening on port 5050.'));
+app.listen(config.port, () => console.log('Listening on port '+config.port.toString()));
 
 export default app;
