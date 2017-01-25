@@ -16,35 +16,35 @@ a [Open Weather Map key](http://openweathermap.org/appid). Store them in the con
 Install [Node.js](https://nodejs.org/). This application was developed using v7.4.0.
 
 1. Installing dependencies:
-    ```shell
+    ```
     $ npm install
     ```
 2. Building:
 
-    ```shell
+    ```
     > $ npm run build:all
     ```
     
 3. Running
-    1. Development mode
-        ```shell
-        $ npm run run:dev
+
+    ```
+    $ npm start
+    ```
+
+4. Developing
+    1. Watching app dir:
+
         ```
-    2. Production mode:
-        ```shell
-        $ npm run run:prod
+        $ npm run watch
         ```
-    3. Rebuild all the application and run at development mode:
-        ```shell
-        $ npm run start:dev
+
+    2. Run at development mode:
         ```
-    4. Rebuild all the application and run at development mode:
-        ```shell
-        $ npm run start:dev
+        $ npm run dev
         ```
 
 ## Running tests
-```shell
+```
 $ npm run test
 ```
 
@@ -58,6 +58,10 @@ $ npm run test
 * [geoplugin](http://www.geoplugin.net/) - Informs approximated latlong using user's ip
 * [OpenWeatherMap](http://openweathermap.org) - Weather API
 * [Google geocoding API](https://developers.google.com/maps/documentation/geocoding/intro) - Get user location data using latlong info
+
+## Known issues
+
+[ ] Open Wheather Map is returning the same min and max values for some cities
 
 ## License
 

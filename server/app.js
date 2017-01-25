@@ -16,10 +16,8 @@ import Weather from './weather';
 import { kelvinToCelsius, kelvinToFahrenheit } from './convert';
 import { server as config } from './config'
 
-const root = process.env.NODE_ENV === 'production'
-    ? __dirname
-    : path.join(__dirname, '../');
-const static_files = path.join(root, 'app-dist');
+const root = path.join(__dirname, '../');
+const static_files = path.join(__dirname, '../', 'app-dist');
 
 const app = new Koa();
 const router = Router();

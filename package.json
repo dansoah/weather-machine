@@ -5,15 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "node_modules/.bin/ava",
-    "start:dev": "npm run build:app && npm run run:dev",
-    "start:prod": "npm run build:all && npm run run:prod",
-    "run:dev": "cross-env NODE_ENV=development babel-node server/app.js",
-    "run:prod": "cross-env NODE_ENV=production node server.js",
+    "watch": "gulp watch",
+    "dev": "cross-env NODE_ENV=development babel-node server/app.js",
+    "start": "cross-env NODE_ENV=production node bin/app.js",
     "build:scripts": "gulp build:js",
     "build:styles": "gulp build:less",
     "build:images": "gulp build:images",
     "build:app": "gulp",
-    "build:server": "node_modules/.bin/babel server/app.js --out-file ./server.js",
+    "build:server": "node_modules/.bin/babel server --out-dir bin/",
     "build:all": "npm run build:server && npm run build:app"
   },
   "repository": {
