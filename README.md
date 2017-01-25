@@ -16,6 +16,7 @@ a [Open Weather Map key](http://openweathermap.org/appid). Store them in the con
 Install [Node.js](https://nodejs.org/). This application was developed using v7.4.0.
 
 1. Installing dependencies:
+
     ```
     $ npm install
     ```
